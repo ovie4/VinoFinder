@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VinoFriend Survey</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript" src="../data/friends.js"></script>-->
+</head>
+
+<body>
+    <!--create survey-->
+    <div class="container">
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img src="https://st.depositphotos.com/1000893/1915/v/950/depositphotos_19159341-stock-illustration-stylized-wine-glass-whit-heart.jpg" width="30" height="30" class="d-inline-block align-top" alt="Stylised Wine Glass">Vino Finder
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/survey">Find Your Vino!</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-md-12">
+                <!--modal-->
+                <div class="modal" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Vino Finder</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h5>Voila! Your best wine is a <span id="wineChoice"></span></h5>
+                                <p><img src="" id="vinoPic" style="width:150px; height:150px;"/> <span id="wineResult"></span></p>
+                                <hr>
+                                <h3>Options</h3>
+                                <p>You can purchase some at<a href="#" class="tooltip-test" title="Order from Amazon" id="amazonLink">Amazon</a> or at <a href="#" class="tooltip-test" title="Buy from Total Wine" id="totalLink">Total Wine</a></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <!--end  modal-->
+                <form>
+                    <!--user name-->
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Name</span>
+                        <input type="text" class="form-control" placeholder="Your Name" aria-label="Your Name" aria-describedby="basic-addon1" id="name">
+                    </div>
+                    
+                    <!--
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">@</span>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" id="username">
+                    </div>
+                	-->
+                    <br>
+                    <!--questions-->
+                    <fieldset class="form-group question1">
+                        <div class="row">
+                            <legend class="col-form-legend col-sm-10">What is your favourite smell?</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q1radios" id="input1r1" value="1"> Lavender
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q1radios" id="input1r2" value="2"> A Garden
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q1radios" id="input1r3" value="3"> New Leather
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q1radios" id="input1r4" value="4"> Coffee Beans
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group question2">
+                        <div class="row">
+                            <legend class="col-form-legend col-sm-10">What kind of chocolate do you prefer?</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q2radios" id="input2r1" value="1"> White Chocolate
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q2radios" id="input2r2" value="2"> Milk Chocolate
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q2radios" id="input2r3" value="3"> Baking Chocolate
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q2radios" id="input2r4" value="4"> Dark Chocolate
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group question3">
+                        <div class="row">
+                            <legend class="col-form-legend col-sm-10">How do you like your tea?</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q3radios" id="input3r1" value="1"> Hot with sugar
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q3radios" id="input3r2" value="2"> Hot with no sugar
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q3radios" id="input3r3" value="3"> Brewed Strong
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q3radios" id="input3r4" value="4"> Coffee please! I have no taste
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group question4">
+                        <div class="row">
+                            <legend class="col-form-legend col-sm-10">Where would you rather go on holiday?</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q4radios" id="input5r1" value="1"> Glamping
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q4radios" id="input5r2" value="2"> Cocktails on a beach
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q4radios" id="input5r3" value="3"> LAN Party in a basement
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q4radios" id="input5r4" value="4"> Bear wrestling in Yosemite
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group question5">
+                        <div class="row">
+                            <legend class="col-form-legend col-sm-10">What is your current drink of choice?</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q5radios" id="input5r1" value="1"> Sex on the Beach
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q5radios" id="input5r2" value="2"> Vodka soda
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q5radios" id="input5r3" value="3"> Long Island
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q5radios" id="input5r4" value="4"> Whiskey Neat
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group question6">
+                        <div class="row">
+                            <legend class="col-form-legend col-sm-10">Pick a car</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q6radios" id="input6r1" value="1"> Pink Mary Kay Cadillac
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q6radios" id="input6r2" value="2"> Prius
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q6radios" id="input6r3" value="3"> Porsche
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q6radios" id="input6r4" value="4"> Koeniggsegg
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <!--end questions-->
+                    <button class="btn btn-primary" type="submit" id="submit" data-toggle="modal" data-target="#modal">Submit form</button>
+                </form>
+                <!--end form-->
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $('#modal').modal('hide');
+    console.log("is linked");
+    var UserProfile = function(name, profile) {
+        this.name = name,
+            this.profile = profile
+    };
+    var userInput = [];
+    //on clicking submit
+    $("#submit").on("click", function(event) {
+        event.preventDefault();
+        userInput = [];
+        for (var i = 1; i < 7; i++) {
+
+            var jQ = "q" + [i]+"radios";
+        	var input = $('input[name='+jQ+']:checked').val();
+
+          //  var input = $(jQ).val();
+            console.log(input);
+            userInput.push(input);
+        }
+        console.log(userInput);
+        userName = $("#name").val().trim();
+        var newProfile = new UserProfile(userName, userInput);
+        console.log(newProfile);
+
+        $.post("/api", newProfile).done(function(data) {
+            console.log("done!");
+            console.log(data);
+            $("#wineResult").text(data.name);
+            $("#vinoPic").attr("src", data.image);
+
+        });
+
+        // $("#modal").modal('show');
+
+    })
+    </script>
+</body>
+
+</html>
