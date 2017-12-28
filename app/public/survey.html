@@ -2,11 +2,12 @@
 <html>
 
 <head>
-    <title>VinoFriend Survey</title>
+    <title>VinoFinder Survey</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+   <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     <!-- <script type="text/javascript" src="../data/friends.js"></script>-->
 </head>
 
@@ -44,11 +45,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <h5>Voila! Your best wine is a <span id="wineChoice"></span></h5>
+                                <h5>Congratulations <span id="user"></span>! Your best wine is a <span id="wineChoice"></span></h5>
                                 <p><img src="" id="vinoPic" style="width:150px; height:150px;"/> <span id="wineResult"></span></p>
                                 <hr>
                                 <h3>Options</h3>
-                                <p>You can purchase some at<a href="#" class="tooltip-test" title="Order from Amazon" id="amazonLink">Amazon</a> or at <a href="#" class="tooltip-test" title="Buy from Total Wine" id="totalLink">Total Wine</a></p>
+                                <p>You can order some from <a href="#" class="tooltip-test" title="Order from Amazon" id="amazonLink" target="_blank">Amazon</a> or buy some at <a href="#" class="tooltip-test" title="Buy from Total Wine" id="totalLink" target="_blank">Total Wine</a></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -63,16 +64,16 @@
                     <!--user name-->
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Name</span>
-                        <input type="text" class="form-control" placeholder="Your Name" aria-label="Your Name" aria-describedby="basic-addon1" id="name">
+                        <input type="text" class="form-control" placeholder="Your Name" aria-label="Your Name" aria-describedby="basic-addon1" id="name" required>
                     </div>
+                    <br />
                     
-                    <!--
                     <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1">@</span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" id="username">
+                        <span class="input-group-addon" id="basic-addon1">Picture</span>
+                        <input type="text" class="form-control" placeholder="Link to your picture" aria-label="Username" aria-describedby="basic-addon1" id="userPic">
                     </div>
-                	-->
-                    <br>
+                	
+                    <br />
                     <!--questions-->
                     <fieldset class="form-group question1">
                         <div class="row">
@@ -199,7 +200,7 @@
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="q5radios" id="input5r3" value="3"> Long Island
+                                        <input class="form-check-input" type="radio" name="q5radios" id="input5r3" value="3"> Beer
                                     </label>
                                 </div>
                                 <div class="form-check">
@@ -238,6 +239,34 @@
                             </div>
                         </div>
                     </fieldset>
+
+                    <fieldset class="form-group question7">
+                        <div class="row">
+                            <legend class="col-form-legend col-sm-10">What do you pair your wine with?</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q7radios" id="input7r1" value="1"> Fish
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q7radios" id="input7r2" value="2"> Dessert
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q7radios" id="input7r3" value="3"> Pasta
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="q7radios" id="input7r4" value="4"> Steak
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
                     <!--end questions-->
                     <button class="btn btn-primary" type="submit" id="submit" data-toggle="modal" data-target="#modal">Submit form</button>
                 </form>
@@ -247,7 +276,6 @@
     </div>
     <script type="text/javascript">
     $('#modal').modal('hide');
-    console.log("is linked");
     var UserProfile = function(name, profile) {
         this.name = name,
             this.profile = profile
@@ -261,7 +289,7 @@
 
             var jQ = "q" + [i]+"radios";
         	var input = $('input[name='+jQ+']:checked').val();
-
+        	
           //  var input = $(jQ).val();
             console.log(input);
             userInput.push(input);
@@ -275,14 +303,24 @@
             console.log("done!");
             console.log(data);
             $("#wineResult").text(data.name);
+            $("#user").text(userName);
             $("#vinoPic").attr("src", data.image);
+            $("#amazonLink").attr("href", data.amzn);
+            $("#totalLink").attr("href", data.total);
 
         });
+        $("input[type=radio]").attr('checked', false);
 
         // $("#modal").modal('show');
 
     })
     </script>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Copyright &copy;Ovie Omene 2017</span>
+      </div>
+    </footer>
 </body>
 
 </html>
