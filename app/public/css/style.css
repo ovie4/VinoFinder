@@ -1,0 +1,23 @@
+body{
+	background-image: url(/static/images/winev)
+}
+
+footer{
+	text-align: center;
+	background-color: maroon;
+	color: white;
+	padding: 10px 0 10px 0;
+}
+
+form{
+	padding-bottom: 30px;
+}
+
+.footerhome{
+	position: fixed;
+	bottom: 0;
+}
+
+.jumbotron {
+    background-color: #a29b9b9e;
+}
